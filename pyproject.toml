@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "2p_code_arseny"
+version = "0.0.1"
+description = "2p pipeline for imaging with photostim and mesoscope project"
+authors = [
+    {name = "DataJoint NEURO", email = "info@vathes.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+keywords = ["neuroscience", "two-photon calcium imaging", "datajoint"]
+dependencies = [
+    "datajoint",
+    "pynwb>=2.5.0",
+    "ndx-events",
+    "element-interface @ git+https://github.com/datajoint/element-interface.git",
+]
+
+[project.urls]
+Homepage = "https://github.com/arsenyf/2p_code_arseny"
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["contrib*", "docs*", "tests*"]
