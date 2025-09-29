@@ -9,6 +9,8 @@ import numpy as np
 from pipeline_py.utils import nwb_export
 
 
+logger = dj.logger
+
 lab = dj.VirtualModule('lab', 'map_lab')
 experiment = dj.VirtualModule('experiment', 'arseny_s1alm_experiment2')
 imaging = dj.VirtualModule('imaging', 'arseny_learning_imaging')
@@ -44,7 +46,7 @@ class NWBFileExport(dj.Computed):
             experiment.Session & paper.ROILICK2DInclusion - stim_anal.SessionEpochsIncludedFinalUniqueEpochs
         )
         return sessions_with_both_photostim_and_behavior.proj() + sessions_with_photostim_only.proj() + sessions_without_photostim.proj()
-
+    
     def make(self, key):
         execution_time = datetime.now(timezone.utc)
 
@@ -69,7 +71,6 @@ class NWBFileExport(dj.Computed):
                 file_size=nwb_filepath.stat().st_size,
             ),
         )
-
 
 
 def perform_dandi_upload(nwb_dir, verify_upload=True):

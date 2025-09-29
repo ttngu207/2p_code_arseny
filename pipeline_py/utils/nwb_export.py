@@ -48,7 +48,8 @@ def session_to_nwb(session_key):
         session_details = {}
 
     # -- NWB file - a NWB2.0 file for each session
-    nwbfile = NWBFile(identifier=f'{this_session["subject_id"]}_session_{this_session["session"]}',
+    nwbfile = NWBFile(identifier=f'{this_session["subject_id"]}_ses_{this_session["session"]}_uid_{this_session["session_uid"]}',
+                      session_id=str(this_session["session"]),
                       session_description=json.dumps(session_details),
                       session_start_time=datetime.combine(this_session['session_date'], zero_zero_time).astimezone(timezone.utc),
                       file_create_date=datetime.now(timezone.utc),
